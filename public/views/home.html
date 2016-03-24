@@ -1,0 +1,39 @@
+<header class="head">
+
+  <h1 class="title">{{home.name}}</h1>
+  <h3 class="subtitle">Watercolor art by Beth Johansen</h3>
+  <br>
+  <nav>
+    <div class='hamburger' ng-click='toggleClass()'>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <ul class='clearfix menu'><h1>
+      <li><a id='main' ui-sref="aboutMe">About Me</a></li>
+      <li><a ui-sref="contactMe">Contact Me</a></li>
+    </h1></ul>
+  </nav>
+
+
+    <div>
+      <a href='/#/login' class = 'btn btn-default'>Login</a>
+    </div>
+    <div ng-controller="logoutCtrl">
+      <a ng-click='logout()' class="btn btn-default">Logout</a>
+    </div>
+
+</header>
+
+
+<div class="main">
+
+  <div ng-repeat='img in image'>
+    <img id='myImg' class='pics' ng-click='expand()' ng-src='../images/{{img.imgUrl}}'>
+  </div>
+
+
+<!-- Modal -->
+  <dir-viewer></dir-viewer>
+
+</div>
