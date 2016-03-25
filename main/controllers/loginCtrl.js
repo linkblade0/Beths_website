@@ -1,6 +1,8 @@
 angular.module('bethSite')
 .controller('loginCtrl', function($scope, $location, authService) {
 
+  $scope.isUser = authService.isLoggedIn();
+
   $scope.login = function () {
     //initial values
     $scope.error = false;
@@ -42,7 +44,18 @@ angular.module('bethSite')
     $scope.disabled = true;
 
     //call signup from service
-    authService.register($scope.registerForm.username, $scope.registerForm.password)
+    authService.register(
+      $scope.registerForm.username,
+      $scope.registerForm.password,
+      $scope.registerForm.firstName,
+      $scope.registerForm.lastName,
+      $scope.registerForm.email,
+      $scope.registerForm.number,
+      $scope.registerForm.street,
+      $scope.registerForm.city,
+      $scope.registerForm.state,
+      $scope.registerForm.zip
+    )
     //handle success
     .then(function () {
       $location.path('/login');

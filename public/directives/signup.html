@@ -9,12 +9,48 @@
     <div class="form-group">
       <label>Password</label>
         <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
-      </div>
-      <div>
-        <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+    </div>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" name="firstName" ng-model="registerForm.firstName" required>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" name="lastName" ng-model="registerForm.lastName" required>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" name="email" ng-model="registerForm.email" required>
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="text" class="form-control" name="number" ng-model="registerForm.number">
+    </div>
+    <p>
+      Address Info
+    </p>
+    <div class="form-group">
+      <label>Street</label>
+      <input type="text" class="form-control" name="street" ng-model="registerForm.street" required>
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input type="text" class="form-control" name="city" ng-model="registerForm.city" required>
+    </div>
+    <div class="form-group">
+      <label>State</label>
+      <input type="text" class="form-control" name="state" ng-model="registerForm.state" required>
+    </div>
+    <div class="form-group">
+      <label>Zip</label>
+      <input type="text" class="form-control" name="zip"
+      ng-model="registerForm.zip" required>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
 
-        <p>Already have an account? <a href="/#/login">Login</a></p>
-        <p>Or go <a href="/">home</a>.</p>
-      </div>
+      <p>Already have an account? <a href="/#/login">Login</a></p>
+      <p>Or go <a href="/">home</a>.</p>
+    </div>
   </form>
 </div>

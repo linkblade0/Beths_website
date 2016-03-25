@@ -13,6 +13,7 @@ angular.module('bethSite')
 
 
   function isLoggedIn() {
+    console.log(user);
     if(user) {
       return true;
     } else {
@@ -30,13 +31,14 @@ angular.module('bethSite')
       } else {
         user = false;
       }
+      return user;
     })
     // handle error
     .error(function (data) {
       user = false;
     });
   }
-  
+
 
 
   function login(username, password) {
@@ -84,13 +86,27 @@ angular.module('bethSite')
   }
 
 
-  function register(username, password) {
+  function register(username, password, firstName, lastName, email, number, street, city, state, zip) {
     //create a new instance of deferred
     var deferred = $q.defer();
 
     //send a post request to the server
     $http.post('/user/register',
-      {username: username, password: password})
+      { username: username,
+        password: password,
+        name: {
+          firstName: firstName,
+          lastName: lastName
+        },
+        email: email,
+        number: number,
+        address: {
+          street: street,
+          city: city,
+          state: state,
+          zip: zip
+        }
+      })
       //handle success
       .success(function(data, status) {
         if(status === 200 && data.status) {

@@ -15,14 +15,14 @@
     </h1></ul>
   </nav>
 
-
-    <div>
-      <a href='/#/login' class = 'btn btn-default'>Login</a>
+    <div ng-model="isUser" ng-init="isUser = false">
+      <div ng-if = "!isUser">
+        <a href='/#/login' class = 'btn btn-default'>Login</a>
+      </div>
+      <div ng-if = "isUser" ng-controller="logoutCtrl">
+        <a ng-click='logout()' class="btn btn-default">Logout</a>
+      </div>
     </div>
-    <div ng-controller="logoutCtrl">
-      <a ng-click='logout()' class="btn btn-default">Logout</a>
-    </div>
-
 </header>
 
 

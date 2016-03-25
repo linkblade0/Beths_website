@@ -8,7 +8,12 @@ angular.module('bethSite', ['ui.router'])
     .state('home', {
       url: '/',
       templateUrl: 'views/home.html',
-      controller: 'homeCtrl'
+      controller: 'homeCtrl',
+      resolve: {
+        user: function(authService) {
+          return authService.getUser();
+        }
+      }
     })
 
     .state('about', {
@@ -46,16 +51,17 @@ angular.module('bethSite', ['ui.router'])
       controller: 'signupCtrl'
     })
 
-})
 
-// .run(function($rootScope, $location, $state, authService) {
-//   $rootScope.$on('$stateChangeStart',
-//     function (event, next, current) {
-//       authService.getUserStatus();
-//       if(next.access.restricted &&
-//         !authService.isLoggedIn()) {
-//         $location.path('/login');
-//         $state.reload();
-//       }
-//     })
-// })
+  // .run(function($rootScope, $location, $state, authService) {
+  //   $rootScope.$on('$stateChangeStart',
+  //     function (event, next, current) {
+  //       authService.getUserStatus();
+  //       if(next.access.restricted &&
+  //         !authService.isLoggedIn()) {
+  //         $location.path('/login');
+  //         $state.reload();
+  //       }
+  //     })
+  // })
+
+})

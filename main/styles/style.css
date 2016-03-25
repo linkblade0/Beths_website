@@ -1,0 +1,262 @@
+
+html, body {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  background-image: url('img/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*---------------------------------------------------------
+  H E A D E R   D I R E C T I V E
+  -------------------------------------------------------*/
+header {
+  height: 250px;
+  width: 100%;
+  /*min-width: 900px;*/
+  padding: 10px;
+  text-align: center;
+  background: #1a0e34;
+  background: linear-gradient(#0E485F, #1C0E35);
+}
+.head {
+  z-index: 1;
+  font-family: fantasy;
+  color: #770505;
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #0000FF;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+nav li {
+  float: left;
+  width: 30%;
+  border-right: 1px solid #ddd;
+  list-style: none;
+}
+
+nav li:first-child {
+  margin-left: 3%;
+}
+
+nav li:last-child {
+  border-right: none;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #4633E8;
+  z-index: 1;
+  position: relative;
+  font-family: serif;
+  text-shadow: 0 0 3px #FF0000;
+}
+
+nav li a:hover {
+  background: #eee;
+}
+
+.hamburger {
+  display: none;
+}
+
+
+
+ /*---------------------------------------------------------
+  P H O T O    G A L L E R Y
+-------------------------------------------------------*/
+/*.main {
+  display: flex;
+}*/
+
+.pics {
+  height: 300px;
+  width: 300px;
+  float: left;
+  margin: 3% 3% 0 3%;
+}
+
+/*.pics:hover {
+  width: 350px;
+  height: 350px;
+}*/
+
+
+  /*--------------------------------------------------------
+    M O D A L     D I R E C T O R Y
+  ---------------------------------------------------------*/
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+#img01 {
+  display: none;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: auto;
+    max-width: 700px;
+    max-height: 700px;
+}
+/* Modal Content (Video) */
+
+.video {
+  text-align: center;
+}
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    margin-bottom: 100px;
+}
+
+@-webkit-keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+#close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#close:hover,
+#close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+/*-------------------------------------------------------------------
+  M E D I A   Q U E R I E S
+  ------------------------------------------------------------------*/
+@media screen and (max-width: 500px) {
+
+  .title {
+    margin-top: 0;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    padding: 15px;
+    display: block;
+    height: 50px;
+    width: 100px;
+  }
+
+  .line {
+    border-bottom: 4px solid #bbb;
+    width: 35px;
+    margin: 6px;
+  }
+
+  .line:last-child {
+    margin-bottom: 0;
+  }
+
+
+  ul a {
+    display: block;
+    padding: 20px;
+    padding-right: 0 !important;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #aaa;
+    cursor: pointer;
+  }
+
+  nav li {
+    width: 100%;
+    /*padding-top: 20px;
+    padding-bottom: 20px;*/
+    text-align: left;
+  }
+  nav li a {
+    padding-right: 0 !important;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    background: grey;
+    max-width: 250px;
+    text-shadow: none;
+    color: black;
+  }
+
+  #home {
+    transform: translateX(-10px);
+}
+
+  .menu {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s;
+  }
+
+  .open {
+    height: 250px;
+  }
+}
