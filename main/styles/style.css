@@ -3,7 +3,6 @@ html, body {
   box-sizing: border-box;
   margin: 0;
   position: relative;
-  background-image: url('img/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -71,14 +70,16 @@ nav li a:hover {
  /*---------------------------------------------------------
   P H O T O    G A L L E R Y
 -------------------------------------------------------*/
-/*.main {
+.main {
   display: flex;
-}*/
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
 .pics {
   height: 300px;
   width: 300px;
-  float: left;
+  /*float: left;*/
   margin: 3% 3% 0 3%;
 }
 
@@ -86,6 +87,14 @@ nav li a:hover {
   width: 350px;
   height: 350px;
 }*/
+.sizer {
+  /*float: left;*/
+}
+
+.pics .sizer{
+}
+
+
 
 
   /*--------------------------------------------------------

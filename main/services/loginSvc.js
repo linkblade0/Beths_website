@@ -12,6 +12,7 @@ angular.module('bethSite')
   });
 
 
+
   function isLoggedIn() {
     console.log(user);
     if(user) {
@@ -20,6 +21,10 @@ angular.module('bethSite')
       return false;
     }
   };
+
+  function getUser() {
+    
+  }
 
 
   function getUserStatus() {

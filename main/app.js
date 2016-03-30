@@ -1,4 +1,4 @@
-angular.module('bethSite', ['ui.router'])
+angular.module('bethSite', ['ui.router', 'ngCart'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -9,17 +9,16 @@ angular.module('bethSite', ['ui.router'])
       url: '/',
       templateUrl: 'views/home.html',
       controller: 'homeCtrl',
-      resolve: {
-        user: function(authService) {
-          return authService.getUser();
-        }
-      }
+      // resolve: {
+      //   user: function(authService) {
+      //     return authService.getUser();
+      //   }
+      // }
     })
 
     .state('about', {
       url: '/about',
       templateUrl: 'views/about.html',
-      controller: 'aboutCtrl'
     })
 
     .state('contact', {
@@ -49,6 +48,12 @@ angular.module('bethSite', ['ui.router'])
       url: '/signup',
       templateUrl: 'directives/signup.html',
       controller: 'signupCtrl'
+    })
+
+    .state('cart', {
+      url:  '/cart',
+      templateUrl: 'views/cart.html',
+      controller: 'cartCtrl'
     })
 
 
