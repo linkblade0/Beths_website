@@ -10,8 +10,38 @@
       <div class="line"></div>
     </div>
     <ul class='clearfix menu'><h1>
-      <li><a id='main' ui-sref="aboutMe">About Me</a></li>
+      <li><a id='main' ui-sref="about">About Me</a></li>
       <li><a ui-sref="home">Home</a></li>
     </h1></ul>
   </nav>
 </header>
+
+
+<div id="contact-wrapper">
+
+  <div class="head-wrapper">
+    <h1 class="head">Contact Me</h1>
+  </div>
+
+  <div id="social-icons-mobile">
+    <ul>
+      <li><a href="mailto:josephlago90@gmail.com" target="_blank"><i class="fa fa-envelope-o grow-rotate"></i>E-MAIL</a></li>
+      <li><a href="https://www.facebook.com/beth.johansen1" target="_blank"><i class="fa fa-facebook-square grow-rotate"></i>FACEBOOK</a></li>
+    </ul>
+  </div>
+
+  <div id="form">
+    <p>E-mail me at <a href="mailto:josephlago90@gmail.com">josephlago90@gmail.com</a><br /> or fill out the form below.</p>
+    <form id="contactForm" method="POST" ng-submit="sendFrickenMessage(contact)">
+      <input ng-model="contact.name" type="text" name="name" class="name" placeholder="Name" required>
+      <input ng-model="contact.email" type="email" name="_replyto" class="email" placeholder="E-mail" required>
+      <input ng-model="contact.subject" type="text" name="subject" class="subject" placeholder="Subject" required>
+      <textarea ng-model="contact.message" name="message" class="message" placeholder="Message..." required></textarea>
+
+
+      <input type="text" name="_gotcha" style="display:none" />
+
+      <button  type="submit" id="sendMessage" class="submit" value="Send">Send</button>
+    </form>
+  </div>
+</div>

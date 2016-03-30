@@ -10,17 +10,19 @@
       <div class="line"></div>
     </div>
     <ul class='clearfix menu'><h1>
-      <li><a id='main' ui-sref="aboutMe">About Me</a></li>
-      <li><a ui-sref="contactMe">Contact Me</a></li>
+      <li><a id='main' ui-sref="about">About Me</a></li>
+      <li><a ui-sref="contact">Contact Me</a></li>
     </h1></ul>
   </nav>
 
-    <div ng-model="isUser" ng-init="isUser = false">
-      <div ng-if = "!isUser">
+    <div ng-model="isUser">
+      <div>
         <a href='/#/login' class = 'btn btn-default'>Login</a>
       </div>
-      <div ng-if = "isUser" ng-controller="logoutCtrl">
+      <div ng-controller="logoutCtrl">
         <a ng-click='logout()' class="btn btn-default">Logout</a>
+
+        <a ui-sref='cart' class = 'btn btn-default'><ngcart-summary></ngcart-summary></a>
       </div>
     </div>
 </header>
@@ -30,10 +32,22 @@
 
   <div ng-repeat='img in image'>
     <img id='myImg' class='pics' ng-click='expand()' ng-src='../images/{{img.imgUrl}}'>
+
+
+    <dir-viewer></dir-viewer>
+
+    <form name="myForm" class='sizer'>
+
+      <label for="mySelect">Select Your Size</label>
+      <select id="mySelect" name="mySelect" ng-options = "option.price as option.size for option in img.options" ng-model="price">
+      </select>
+
+      <ngcart-addtocart id='{{img.name}}' name="{{img.name}}" price='{{price}}' quantity='1' quantity-max='5'> Add to Cart </ngcart-addtocart>
+
+    </form>
   </div>
 
 
-<!-- Modal -->
-  <dir-viewer></dir-viewer>
+
 
 </div>

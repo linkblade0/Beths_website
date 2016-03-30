@@ -17,6 +17,8 @@ var config = require('./config');
 
 //models
 var User = require('./models/user.js')
+var Cart = require('./models/cart.js')
+var Order = require('./models/orders.js')
 
 // Configure the local strategy for use by Passport.
 //
@@ -25,15 +27,6 @@ var User = require('./models/user.js')
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
 
-  // passport.use(new localStrategy(
-  //   function(username, password, cb) {
-  //     db.users.findByUsername(username, function(err, user) {
-  //       if (err) {return cb(err); }
-  //       if (!user) {return cb(null, false); }
-  //       if (user.password != password) {return cb(null, false); }
-  //       return cb(null, user);
-  //     });
-  // }));
 passport.use(new localStrategy(User.authenticate()));
   // Configure Passport authenticated session persistence.
   //
@@ -73,6 +66,101 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
+//CART, ORDER, USER ENDPOINTS
+
+app.post('/api/order/:user_id', function(req, res, next) {
+  var userId = req.params.userId;
+  User.findById(userId, function(err, result) {
+    if(err) {
+      res.sendStatus(500);
+    }
+    var userObj = result;
+    var userOrder = {};
+    userOrder.products = userObj.cart;
+    userOrder.userId = userId;
+    var newOrder = new Order(userOrder);
+    newOrder.save(function(err, result) {
+      if (err) {
+        res.sendStatus(500);
+      }
+      userObj.cart = [];
+      userObj.orders.push(mongoose.Types.ObjectId(result._id));
+      //userObj.update({$push: {orders: mongoose.Types.ObjectId(result._id)}})
+      userObj.save(function(err, result) {
+        if (err) {
+          res.sendStatus(500);
+        }
+        res.send(result);
+      })
+    })
+  })
+})
+
+app.get('/api/order/', function(req, res, next) {
+  Order.find(req.query, function(err, result) {
+    if (err) {
+      res.sendStatus(500);
+    }
+    res.send(result);
+  })
+})
+
+app.post('/api/cart/:user_id', function(req, res, next) {
+  User.findByIdAndUpdate(req.params.user_id, {$push: {cart: req.body}}, function(err, res) {
+    if (error) {
+      return res.status(500).json(error);
+    } else {
+      return res.json(response);
+    }
+  })
+})
+
+app.put('/api/cart/:user_id', function(req, res, next) {
+  User.findByIdAndUpdate(req.params.user_id, function(err, res) {
+    if(err) {
+      res.status(500).send(err)
+    }
+    var myUser = res;
+    var qty = req.query.qty/1;
+    var foundItem = -1;
+    myUser.cart.forEach(function(cartItem, index) {
+      if (cartItem._id === req.query.itmId) {
+        foundItem = index;
+      }
+    })
+    if(index >=0) {
+      if(qty === 0) {
+        myUser.cart.splice(index, 1);
+      } else {
+        myUser.cart[myIndex].qty = qty;
+      }
+    }
+    saveUser(myUser, req, res)
+  })
+
+  function saveUser(userToSave, req, res) {
+    userToSave.save(function(err, result) {
+      if(err) {
+        res.status(500).send(err)
+      } else {
+        res.send(result)
+      }
+    })
+  }
+})
+
+app.get('/api/user/:id', function(req, res, next) {
+  User
+    .findById(req.params.user_id)
+    .populate('cart/product')
+    .exec()
+    .then(function(results) {
+      return res.json(results);
+    }, function(err) {
+      return res.status(500).json(error);
+    })
+})
+
 // error hndlers
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -88,17 +176,6 @@ app.use(function(err, req, res) {
   }));
 });
 
-// create end point
-// app.post( '/user', userCtrl.create );
-// // update end point
-// app.put( '/user/:id', userCtrl.update );
-// //delete end point
-// app.delete( '/user/:id', userCtrl.delete );
-// // read end point
-// // a get method that is being passed a URL, and a callback.
-// // user URL, using the callback method, read, on the userCtrl object.
-// app.get( '/users', userCtrl.read );
-// //callback is when you pass the name specifically without invoking it, and the app will use it itself.
 
 
 //routing Variables
