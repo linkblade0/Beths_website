@@ -11,9 +11,22 @@
     </div>
     <ul class='clearfix menu'><h1>
       <li><a id='main' ui-sref="about">About Me</a></li>
-      <li><a ui-sref="home">Home</a></li>
+      <li><a id='main' ui-sref="home">Home</a></li>
     </h1></ul>
   </nav>
+
+  <div ng-model="isUser" class = 'cart'>
+    <div ng-hide='isUser'>
+      <a ui-sref='signup' class = 'btn btn-default'>Register</a>
+      <a href='/#/login' class = 'btn btn-default' >Login</a>
+    </div>
+    <div ng-show='isUser' ng-controller="logoutCtrl">
+      <a ng-click='logout()' class="btn btn-default">Logout</a>
+
+      <a ui-sref='cart' class = 'btn btn-default'><ngcart-summary></ngcart-summary></a>
+    </div>
+  </div>
+
 </header>
 
 

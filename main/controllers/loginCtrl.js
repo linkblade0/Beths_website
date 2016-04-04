@@ -1,7 +1,7 @@
 angular.module('bethSite')
 .controller('loginCtrl', function($scope, $location, authService) {
 
-  $scope.isUser = authService.isLoggedIn();
+
 
   $scope.login = function () {
     //initial values

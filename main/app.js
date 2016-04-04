@@ -1,6 +1,6 @@
-angular.module('bethSite', ['ui.router', 'ngCart'])
+angular.module('bethSite', ['ui.router', 'ngCart', 'ngCookies'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $cookiesProvider) {
 
   $urlRouterProvider.otherwise('/')
 
@@ -8,7 +8,7 @@ angular.module('bethSite', ['ui.router', 'ngCart'])
     .state('home', {
       url: '/',
       templateUrl: 'views/home.html',
-      controller: 'homeCtrl',
+      controller: 'homeCtrl'
       // resolve: {
       //   user: function(authService) {
       //     return authService.getUser();
@@ -19,6 +19,7 @@ angular.module('bethSite', ['ui.router', 'ngCart'])
     .state('about', {
       url: '/about',
       templateUrl: 'views/about.html',
+      controller: 'homeCtrl'
     })
 
     .state('contact', {
@@ -30,7 +31,12 @@ angular.module('bethSite', ['ui.router', 'ngCart'])
     .state('profile', {
       url: '/user',
       templateUrl: 'views/profile.html',
-      controller: 'profileCtrl'
+      controller: 'profileCtrl',
+      resolve: {
+        isAuth: function ( authService ) {
+        return authService.isLoggedIn();
+        }
+      }
     })
 
     .state('login', {
@@ -53,20 +59,38 @@ angular.module('bethSite', ['ui.router', 'ngCart'])
     .state('cart', {
       url:  '/cart',
       templateUrl: 'views/cart.html',
-      controller: 'cartCtrl'
+      controller: 'cartCtrl',
+      resolve: {
+        isAuth: function ( authService ) {
+        return authService.isLoggedIn();
+        }
+      }
     })
 
-
-  // .run(function($rootScope, $location, $state, authService) {
-  //   $rootScope.$on('$stateChangeStart',
-  //     function (event, next, current) {
-  //       authService.getUserStatus();
-  //       if(next.access.restricted &&
-  //         !authService.isLoggedIn()) {
-  //         $location.path('/login');
-  //         $state.reload();
-  //       }
-  //     })
-  // })
-
 })
+
+// .run(['$state', '$cookies', '$rootScope', function($state, $cookies, $rootScope) {
+//     $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+//
+//         if (toState.name.indexOf('profile') > -1 && !$cookies.Session) {
+//             // If logged out and transitioning to a logged in page:
+//             e.preventDefault();
+//             $state.go('login');
+//         } else if (toState.name.indexOf('cart') > -1 && $cookies.Session) {
+//             e.preventDefault();
+//             $state.go('home');
+//         };
+//     });
+// }]);
+
+// .run(function($rootScope, $location, $state, authService) {
+//   $rootScope.$on('$stateChangeStart',
+//     function (event, next, current) {
+//       authService.getUserStatus();
+//       if(next.access.restricted &&
+//         !authService.isLoggedIn()) {
+//         $location.path('/login');
+//         $state.reload();
+//       }
+//     })
+// })

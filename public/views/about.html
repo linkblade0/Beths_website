@@ -11,20 +11,33 @@
     </div>
     <ul class='clearfix menu'><h1>
       <li><a id='main' ui-sref="home">Home</a></li>
-      <li><a ui-sref="contact">Contact Me</a></li>
+      <li><a id='main' ui-sref="contact">Contact Me</a></li>
     </h1></ul>
   </nav>
+
+  <div ng-model="isUser" class = 'cart'>
+    <div ng-hide='isUser'>
+      <a ui-sref='signup' class = 'btn btn-default'>Register</a>
+      <a href='/#/login' class = 'btn btn-default' >Login</a>
+    </div>
+    <div ng-show='isUser' ng-controller="logoutCtrl">
+      <a ng-click='logout()' class="btn btn-default">Logout</a>
+
+      <a ui-sref='cart' class = 'btn btn-default'><ngcart-summary></ngcart-summary></a>
+    </div>
+  </div>
+
 </header>
 
 <div>
 
-  <img class=selfImg src="../images/beth.jpg"/>
+  <img class=selfImg src="../images/me-min.jpg"/>
   <p>
     I'm Beth Johansen and I have been drawing and painting most of my life, but never did much with the stuff I made- now with the encouragement of my friends, family and the Universe I am putting my stuff out into the world- This is my passion, I hope you like it as much as I love panting it. <br><br>
 
-    4x6 singles $5.00 or two for $8.00, <br>
-    5x7 singles $15.00 or two for $25.00 <br>
-    8x10 singles $25.00 or two for $40.00 <br>
+    4x6 singles $5.00, <br>
+    5x7 singles $15.00, <br>
+    8x10 singles $25.00, <br>
     16x20 single $60.00 <br>
     Some prints are not available in these sizes but most are so please contact me if you want anything or have any questions.
 Thank you

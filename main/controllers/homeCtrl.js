@@ -1,9 +1,12 @@
 angular.module('bethSite')
-.controller('homeCtrl', function($scope, homeSvc) {
+.controller('homeCtrl', function($scope, homeSvc, authService) {
 
   $scope.home = {name: 'Welcome to Dream B'};
 
   $scope.image = homeSvc.getPic();
+
+  $scope.isUser = authService.isLoggedIn();
+  console.log($scope.isUser + 'From Controller')
 
   // $scope.addCart = function(){
   //   if(!anything || !model.id && !user) {

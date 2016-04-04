@@ -1,5 +1,5 @@
 angular.module('bethSite')
-.controller('contactCtrl', function($scope) {
+.controller('contactCtrl', function($scope, authService) {
 
   $scope.sendFrickenMessage = function(data) {
     $.ajax({
@@ -16,5 +16,8 @@ angular.module('bethSite')
     alert('Thanks for the e-mail!');
     return false;
   }
+
+  $scope.isUser = authService.isLoggedIn();
+  console.log($scope.isUser + 'From Controller')
 
 })

@@ -27,7 +27,7 @@ angular.module('ngCart', ['ngCart.directives'])
 
     }])
 
-    .service('ngCart', ['$rootScope', 'ngCartItem', 'store', function ($rootScope, ngCartItem, store) {
+    .service('ngCart', ['$rootScope', 'ngCartItem', 'store','homeSvc', function ($rootScope, ngCartItem, store, homeSvc) {
 
         this.init = function(){
             this.$cart = {
@@ -39,6 +39,8 @@ angular.module('ngCart', ['ngCart.directives'])
         };
 
         this.addItem = function (id, name, price, quantity, data) {
+
+            homeSvc.info.push(name);
 
             var inCart = this.getItemById(id);
 
@@ -147,16 +149,16 @@ angular.module('ngCart', ['ngCart.directives'])
         };
 
         this.empty = function () {
-            
+
             $rootScope.$broadcast('ngCart:change', {});
             this.$cart.items = [];
             localStorage.removeItem('cart');
         };
-        
+
         this.isEmpty = function () {
-            
+
             return (this.$cart.items.length > 0 ? false : true);
-            
+
         };
 
         this.toObject = function() {
@@ -420,10 +422,19 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
     .directive('ngcartCheckout', [function(){
         return {
             restrict : 'E',
-            controller : ('CartController', ['$rootScope', '$scope', 'ngCart', 'fulfilmentProvider', function($rootScope, $scope, ngCart, fulfilmentProvider) {
+            controller : ('CartController', ['$rootScope', '$scope', 'ngCart', 'fulfilmentProvider', 'authService', function($rootScope, $scope, ngCart, fulfilmentProvider, authService) {
                 $scope.ngCart = ngCart;
 
+                $scope.getCart = ngCart.getCart().items
+
+                $scope.makeOrder = function (userInfo, cart) {
+                  authService.makeOrder(userInfo, cart)
+                }
+
+
                 $scope.checkout = function () {
+                    authService.makeOrder(authService.userInfo, ngCart.getItems().items)
+
                     fulfilmentProvider.setService($scope.service);
                     fulfilmentProvider.setSettings($scope.settings);
                     fulfilmentProvider.checkout()

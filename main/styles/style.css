@@ -14,7 +14,7 @@ html, body {
   H E A D E R   D I R E C T I V E
   -------------------------------------------------------*/
 header {
-  height: 250px;
+  height: 275px;
   width: 100%;
   /*min-width: 900px;*/
   padding: 10px;
@@ -29,6 +29,10 @@ header {
   text-shadow: 0 0 3px #ffffff, 0 0 5px #0000FF;
 }
 
+#navbar {
+  width: 40%
+}
+
 .title {
   margin-bottom: 0;
 }
@@ -41,7 +45,7 @@ nav li {
 }
 
 nav li:first-child {
-  margin-left: 3%;
+  margin-left: 18%;
 }
 
 nav li:last-child {
@@ -70,6 +74,11 @@ nav li a:hover {
  /*---------------------------------------------------------
   P H O T O    G A L L E R Y
 -------------------------------------------------------*/
+
+.selfImg {
+  height: 300px;
+}
+
 .main {
   display: flex;
   flex-wrap: wrap;
@@ -81,6 +90,10 @@ nav li a:hover {
   width: 300px;
   /*float: left;*/
   margin: 3% 3% 0 3%;
+}
+
+.cart {
+  float: right;
 }
 
 /*.pics:hover {

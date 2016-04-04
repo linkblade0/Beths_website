@@ -1,10 +1,10 @@
 
 <div ng-if="service=='http' || service == 'log'">
-    <button class="btn btn-primary" ng-click="checkout()" ng-disabled="!ngCart.getTotalItems()" ng-transclude>Checkout</button>
+    <button class="btn btn-primary" ng-click= "makeOrder( {{userInfo}}, {{getCart}} ); checkout()" ng-disabled="!ngCart.getTotalItems()" ng-transclude>Checkout</button>
 </div>
 
 
-<div ng-if="service=='paypal'">
+<div ng-if="service=='paypal'" ng-click= "makeOrder( {{userInfo}}, {{getCart}} )">
 
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" ng-show="ngCart.getTotalItems()">
         <input type="hidden" name="cmd" value="_xclick" />

@@ -10,24 +10,27 @@
       <div class="line"></div>
     </div>
     <ul class='clearfix menu'><h1>
-      <li><a id='main' ui-sref="about">About Me</a></li>
-      <li><a ui-sref="contact">Contact Me</a></li>
-    </h1></ul>
-  </nav>
+      <li><a id='main navbar' ui-sref="contact">Contact Me</a></li>
+      <li><a id='main navbar' ui-sref="about">About Me</a></li>
+    </h1>
 
-    <div ng-model="isUser">
-      <div>
-        <a href='/#/login' class = 'btn btn-default'>Login</a>
+    <div ng-model="isUser" class = 'cart'>
+      <div ng-hide='isUser'>
+        <a ui-sref='signup' class = 'btn btn-default'>Register</a>
+        <a href='/#/login' class = 'btn btn-default' >Login</a>
       </div>
-      <div ng-controller="logoutCtrl">
+      <div ng-show='isUser' ng-controller="logoutCtrl">
         <a ng-click='logout()' class="btn btn-default">Logout</a>
-
+        <a ui-sref='profile' class = 'btn btn-default' >Profile</a>
         <a ui-sref='cart' class = 'btn btn-default'><ngcart-summary></ngcart-summary></a>
       </div>
     </div>
+  </nav>
+
+  </ul>
 </header>
 
-
+<!-- I am Satan, lord of darkness, prince of chaos -->
 <div class="main">
 
   <div ng-repeat='img in image'>
@@ -42,7 +45,8 @@
       <select id="mySelect" name="mySelect" ng-options = "option.price as option.size for option in img.options" ng-model="price">
       </select>
 
-      <ngcart-addtocart id='{{img.name}}' name="{{img.name}}" price='{{price}}' quantity='1' quantity-max='5'> Add to Cart </ngcart-addtocart>
+      <ngcart-addtocart id='{{img.name}}' name="{{img.name}} + {{price.print}}" price='{{price.amount}}' quantity='1' quantity-max='5'> Add to Cart </ngcart-addtocart>
+
 
     </form>
   </div>

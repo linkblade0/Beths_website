@@ -27,7 +27,7 @@ gulp.task('css', () => {
 
 gulp.task('js', () => {
   gulp.src('./main/**/*.js')
-  .pipe(annotate())
+  // .pipe(annotate())
   // .pipe(uglify())
   .pipe(concat('js.min.js'))
   .pipe(gulp.dest('./public'))
